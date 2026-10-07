@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>店名 | 韓国風の内装のパン屋</title>
+<meta name="description" content="韓国風の内装が人気のパン屋。写真で雰囲気を見て、そのまま場所を確認できます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1e6d6;      /* ベージュ（基調） */
+  --bg2:#e8d9c3;     /* 濃いベージュ */
+  --paper:#fbf6ee;   /* 明るいベージュ */
+  --ink:#3b2f27;     /* 文字 */
+  --red:#c8281f;     /* 差し色 */
+  --red-dk:#a01d16;
+  --font:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.9;font-size:16px;-webkit-text-size-adjust:100%}
+img{display:block;max-width:100%}
+a{color:var(--red)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(22px,5.5vw,30px);line-height:1.5;margin-bottom:20px;font-weight:700}
+h2::after{content:"";display:block;width:44px;height:4px;background:var(--red);border-radius:2px;margin-top:12px}
+p+p{margin-top:1em}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:14px 28px;border-radius:999px;border:0;font:inherit;font-weight:700;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--red-dk)}
+.btn.line{background:transparent;color:var(--red);border:2px solid var(--red)}
+.btn.line:hover{background:var(--red);color:#fff}
+
+/* 写真枠：画像がなくても色の面が出る */
+.ph{position:relative;overflow:hidden;background:linear-gradient(145deg,#d9c3a5,#c9a98a);}
+.ph::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;color:#7a5b45;font-size:13px;text-align:center;padding:8px;z-index:0}
+.ph img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+
+/* 1. ヒーロー */
+.hero{padding:40px 0 64px;overflow:hidden}
+.hero h1{font-size:clamp(30px,8.5vw,52px);line-height:1.4;font-weight:700;letter-spacing:.02em}
+.hero h1 span{display:block}
+.hero p.lead{margin-top:16px;max-width:30em}
+.hero-photos{position:relative;margin-top:36px;height:min(112vw,560px)}
+.arch{position:absolute;border-radius:999px 999px 16px 16px;box-shadow:0 0 0 6px var(--paper)}
+.arch.a{left:0;top:0;width:62%;height:88%;animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.arch.b{right:0;bottom:0;width:44%;height:60%;animation:rise 1.1s .35s cubic-bezier(.2,.7,.2,1) both}
+.arch img{animation:settle 2.4s ease-out both}
+.hero .btn{margin-top:28px}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes settle{from{transform:scale(1.15)}to{transform:scale(1)}}
+
+/* 2. ギャラリー */
+.gallery{background:var(--paper)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.grid .ph{aspect-ratio:1/1;border-radius:14px}
+.grid .ph:nth-child(1){border-radius:100px 100px 14px 14px;aspect-ratio:3/4}
+.grid .ph:nth-child(4){border-radius:14px 14px 100px 100px;aspect-ratio:3/4}
+.grid .ph:nth-child(2),.grid .ph:nth-child(3){align-self:center}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.grid .ph img{transition:transform .6s ease}
+.grid .ph:hover img{transform:scale(1.06)}
+
+/* 3. こだわりの空間 */
+.space ul{list-style:none;padding:0;margin-top:24px;display:grid;gap:14px}
+.space li{background:var(--paper);border-left:6px solid var(--red);border-radius:6px 14px 14px 6px;padding:16px 20px}
+.space li strong{display:block;font-size:17px}
+
+/* 4. パン */
+.bread{background:var(--bg2)}
+.bread .cols{display:grid;gap:14px;margin-top:24px}
+.bread .item{background:var(--paper);border-radius:14px;padding:18px 20px}
+.bread .item h3{font-size:17px;color:var(--red)}
+.note{font-size:14px;margin-top:16px;opacity:.85}
+
+/* 5. 場所 */
+.info{display:grid;gap:4px 16px;grid-template-columns:5.5em 1fr;margin:20px 0}
+.info dt{font-weight:700}
+.info dd{margin:0}
+.map{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 0 0 6px var(--paper);aspect-ratio:4/3;background:var(--bg2)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.map-link{margin-top:22px}
+
+/* 6. ヒント */
+.tips{background:var(--paper)}
+.tips ul{margin-top:20px;padding-left:1.3em}
+.tips li{margin-bottom:.8em}
+.tips li::marker{color:var(--red)}
+
+/* フォーム */
+.contact{margin-top:40px;background:var(--bg);border-radius:18px;padding:24px 20px}
+.contact h3{font-size:19px;margin-bottom:12px}
+label{display:block;font-weight:700;margin-top:14px;font-size:15px}
+input,textarea{width:100%;margin-top:6px;padding:12px 14px;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:2px solid #d9c6ac;border-radius:10px}
+input:focus,textarea:focus{border-color:var(--red);outline:none}
+textarea{min-height:130px;resize:vertical}
+.contact .btn{margin-top:20px;width:100%}
+
+/* 7. フッター */
+footer{background:var(--red);color:#fff;text-align:center;padding:64px 20px 40px}
+footer h2{color:#fff}
+footer h2::after{background:#fff;margin-left:auto;margin-right:auto}
+footer .btn{background:#fff;color:var(--red)}
+footer .btn:hover{background:var(--bg)}
+footer small{display:block;margin-top:36px;font-size:12px;opacity:.85}
+
+@media(min-width:720px){
+  section{padding:96px 0}
+  .grid{grid-template-columns:repeat(4,1fr)}
+  .grid .ph:nth-child(n){aspect-ratio:3/4;align-self:auto}
+  .grid .ph:nth-child(2){margin-top:32px}.grid .ph:nth-child(3){margin-top:16px}
+  .bread .cols{grid-template-columns:repeat(3,1fr)}
+  .space ul{grid-template-columns:repeat(2,1fr)}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .hero-photos{margin-top:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. ファーストビュー「内装ヒーロー」 -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1><span>あの写真の</span><span>空間に、会いにいく。</span></h1>
+      <p class="lead">韓国のカフェのようなやさしい色の店内で、焼きたてのパンをどうぞ。写真を見て気になったら、そのまま場所を確認できます。</p>
+      <a class="btn" href="#access">場所を見る</a>
+    </div>
+    <div class="hero-photos">
+      <!-- 写真1・2：ヒーロー用（内装／外装） -->
+      <figure class="arch a ph" data-label="ヒーロー写真1（内装）"><img src="photos/hero-1.jpg" alt="アーチ窓のある店内" onerror="this.style.display='none'"></figure>
+      <figure class="arch b ph" data-label="ヒーロー写真2（外装）"><img src="photos/hero-2.jpg" alt="お店の外観" onerror="this.style.display='none'"></figure>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- 2. フォトギャラリー -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <h2>フォトギャラリー</h2>
+    <p>店内でゆっくりお過ごし下さい。</p>
+    <div class="grid">
+      <!-- 写真3〜6：ギャラリー用 -->
+      <figure class="ph reveal" data-label="ギャラリー写真1"><img src="photos/gallery-1.jpg" alt="店内の壁と照明" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="ph reveal" data-label="ギャラリー写真2"><img src="photos/gallery-2.jpg" alt="パンが並ぶカウンター" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="ph reveal" data-label="ギャラリー写真3"><img src="photos/gallery-3.jpg" alt="イートインの席" loading="lazy" onerror="this.style.display='none'"></figure>
+      <figure class="ph reveal" data-label="ギャラリー写真4"><img src="photos/gallery-4.jpg" alt="店内の入口まわり" loading="lazy" onerror="this.style.display='none'"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 3. こだわりの空間 -->
+<section class="space" id="space">
+  <div class="wrap">
+    <h2>こだわりの空間</h2>
+    <p>パンを選ぶ時間まで楽しくなるように、店内づくりを大切にしています。</p>
+    <ul>
+      <li><strong>やさしい色の壁</strong>ベージュ基調に、赤を少しだけ。写真に残したくなる色合いです。</li>
+      <li><strong>ゆっくり座れる席</strong>買ったパンをその場で味わえます。</li>
+    </ul>
+    <p class="note">※ここに書く内容は、実際のお店に合わせて書き換えてください。</p>
+  </div>
+</section>
+
+<!-- 4. パンのごあんない -->
+<section class="bread" id="bread">
+  <div class="wrap">
+    <h2>パンのごあんない</h2>
+    <p>初めてなら、まずは定番から。</p>
+    <div class="cols">
+      <div class="item"><h3>おすすめのパン 1</h3><p>パンの名前と、味や食感を一言で。</p></div>
+      <div class="item"><h3>おすすめのパン 2</h3><p>パンの名前と、味や食感を一言で。</p></div>
+      <div class="item"><h3>おすすめのパン 3</h3><p>パンの名前と、味や食感を一言で。</p></div>
+    </div>
+    <p class="note">※実際の商品名・説明に書き換えてください。</p>
+  </div>
+</section>
+
+<!-- 5. 場所とアクセス -->
+<section id="access">
+  <div class="wrap">
+    <h2>場所とアクセス</h2>
+    <dl class="info">
+      <dt>住所</dt><dd id="addr-text"></dd>
+      <dt>営業時間</dt><dd>〇:〇〇〜〇〇:〇〇（定休日：〇曜）</dd>
+      <dt>最寄り駅</dt><dd>〇〇駅から徒歩〇分</dd>
+    </dl>
+    <div class="map"><iframe id="map" title="お店の地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <p class="map-link"><a class="btn line" id="map-open" target="_blank" rel="noopener">Googleマップで開く</a></p>
+  </div>
+</section>
+
+<!-- 6. 来店のヒント -->
+<section class="tips" id="tips">
+  <div class="wrap">
+    <h2>来店のヒント</h2>
+    <ul>
+      <li>写真を撮るなら、外の光が入る昼間が明るくきれいです。</li>
+      <li>人気のパンは早めに売り切れることがあります。</li>
+      <li>友だちと一緒でも、ひとりでも気軽に入れます。</li>
+    </ul>
+    <p class="note">※実際のお店の情報に書き換えてください。</p>
+
+    <form class="contact" action="https://formspree.io/f/XXXXXXXX" method="POST">
+      <h3>お問い合わせ</h3>
+      <p>ご質問があれば、こちらからどうぞ。</p>
+      <label for="name">名前</label>
+      <input id="name" name="name" type="text" autocomplete="name" required>
+      <label for="email">アドレス</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="message">問い合わせ内容</label>
+      <textarea id="message" name="message" required></textarea>
+      <button class="btn" type="submit">この内容で送る</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- 7. フッター「もう一度、場所へ」 -->
+<footer>
+  <h2>もう一度、場所へ</h2>
+  <p>気になったら、次のお休みに寄ってみませんか。</p>
+  <p style="margin-top:24px"><a class="btn" id="map-open2" target="_blank" rel="noopener">Googleマップで開く</a></p>
+  <small>© 店名</small>
+</footer>
+
+<script>
+  // ★ここを実際の住所に書き換えるだけで、地図とリンクに反映されます
+  const ADDRESS = "東京駅";
+  const q = encodeURIComponent(ADDRESS);
+  document.getElementById("map").src = "https://www.google.com/maps?q=" + q + "&output=embed";
+  document.getElementById("map-open").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+  document.getElementById("map-open2").href = "https://www.google.com/maps/search/?api=1&query=" + q;
+  document.getElementById("addr-text").textContent = ADDRESS;
+
+  // ギャラリーのふわっと表示
+  const io = new IntersectionObserver((es)=>{
+    es.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add("in"), i*120); io.unobserve(e.target);} });
+  },{threshold:.15});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
